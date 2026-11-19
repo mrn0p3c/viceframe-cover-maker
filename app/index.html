@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ViceFrame — GTA-Style Cover Art Maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="left" class="panel">
+    <header class="brand">
+      <h1>Vice<span>Frame</span></h1>
+      <p>Your photos, GTA-style cover art — with a Batik Vice twist. Everything stays on your machine.</p>
+    </header>
+
+    <section>
+      <h2>Photos</h2>
+      <label class="drop" id="dropZone">
+        <input id="fileInput" type="file" accept="image/*" multiple>
+        <strong>Add photos</strong>
+        <small>click, or drop images anywhere (up to 5)</small>
+      </label>
+      <div class="sampleRow">
+        <span>Try a sample:</span>
+        <button type="button" data-sample="pier">Pier</button>
+        <button type="button" data-sample="boulevard">Boulevard</button>
+      </div>
+      <div id="thumbs" class="thumbs"></div>
+      <p class="hint">Click a photo, then click a panel to place it. Drag inside a panel to reposition.</p>
+    </section>
+
+    <section>
+      <h2>Layout</h2>
+      <div id="layoutBtns" class="btnGrid"></div>
+    </section>
+
+    <section>
+      <h2>Theme / Grade</h2>
+      <div id="themeBtns" class="btnGrid"></div>
+    </section>
+  </aside>
+
+  <main id="stage">
+    <canvas id="cover" width="1080" height="1350" aria-label="Cover preview"></canvas>
+    <p id="stageHint">Click a panel to select it · drag a photo to frame it · scroll over the cover to zoom the selected panel</p>
+  </main>
+
+  <aside id="right" class="panel">
+    <section>
+      <h2 id="panelTitle">Panel 1</h2>
+      <label class="field">Fill this panel with
+        <select id="panelPhoto"></select>
+      </label>
+      <label class="field" id="sceneField">Procedural scene
+        <select id="panelScene"></select>
+      </label>
+      <label class="field">Zoom <span id="zoomVal">100%</span>
+        <input id="panelZoom" type="range" min="40" max="400" value="100">
+      </label>
+      <div class="row">
+        <span class="fieldLabel">Frame</span>
+        <div class="seg" id="modeSeg">
+          <button type="button" data-mode="fill">Fill</button>
+          <button type="button" data-mode="fit">Fit</button>
+        </div>
+      </div>
+      <label class="check">
+        <input id="panelBatik" type="checkbox">
+        Batik overlay (mega mendung + kawung strip)
+      </label>
+    </section>
+
+    <section>
+      <h2>Words</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" maxlength="26" value="VICE FRAME">
+      </label>
+      <label class="field">Caption line
+        <input id="subtitleInput" type="text" maxlength="34" value="One last sunset">
+      </label>
+    </section>
+
+    <section>
+      <h2>Export PNG</h2>
+      <div class="exportGrid">
+        <button type="button" data-size="1080x1080">1080 × 1080</button>
+        <button type="button" data-size="1080x1350">1080 × 1350</button>
+        <button type="button" data-size="1920x1080">1920 × 1080</button>
+        <button type="button" data-size="1080x1920">1080 × 1920</button>
+      </div>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+</div>
+
+<canvas id="fullCover" aria-label="The finished cover"></canvas>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

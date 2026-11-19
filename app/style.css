@@ -1,0 +1,192 @@
+/* ViceFrame studio: a dark editor around a bright cover. Anton (SIL OFL, see
+   fonts/OFL.txt) carries the brand and the cover lettering. */
+
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0b0d14;
+  color: #e8eaf2;
+  font: 14px/1.45 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 268px;
+  height: 100vh;
+}
+
+.panel {
+  background: #141724;
+  padding: 16px 16px 24px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+#left { border-right: 1px solid #262b40; }
+#right { border-left: 1px solid #262b40; }
+
+.brand h1 {
+  font-family: 'Anton', 'Arial Black', sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  margin: 0;
+  text-transform: uppercase;
+  color: #fff;
+}
+.brand h1 span { color: #ff4f9a; }
+.brand p { color: #9aa3bd; font-size: 12.5px; margin: 6px 0 4px; }
+
+section { margin-top: 16px; }
+section h2 {
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #7f88a3;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #262b40;
+  padding-bottom: 6px;
+}
+
+.drop {
+  display: block;
+  border: 1.5px dashed #3d4566;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  background: #10131f;
+}
+.drop:hover { border-color: #22d3ee; }
+.drop input { display: none; }
+.drop strong { display: block; color: #22d3ee; font-size: 14px; }
+.drop small { color: #7f88a3; }
+
+.sampleRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #9aa3bd;
+}
+button {
+  font: inherit;
+  background: #1d2236;
+  color: #e8eaf2;
+  border: 1px solid #333b58;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+button:hover { border-color: #22d3ee; }
+button.active {
+  background: #22d3ee;
+  border-color: #22d3ee;
+  color: #06222b;
+  font-weight: 600;
+}
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.thumbs button {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 1;
+  position: relative;
+}
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumbs button.active { outline: 2px solid #ff4f9a; border-color: #ff4f9a; }
+.thumbs .num {
+  position: absolute;
+  left: 4px; top: 4px;
+  background: rgba(5, 8, 16, 0.8);
+  color: #fff;
+  font-size: 11px;
+  border-radius: 50%;
+  width: 18px; height: 18px;
+  line-height: 18px;
+}
+
+.hint { color: #7f88a3; font-size: 12px; }
+
+.btnGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btnGrid button { text-align: left; font-size: 12.5px; padding: 8px 10px; }
+.btnGrid button small { display: block; color: #7f88a3; font-size: 10.5px; }
+.btnGrid button.active small { color: #0a3542; }
+
+#stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px;
+  background:
+    radial-gradient(900px 500px at 50% 0%, #1a1030 0%, transparent 60%),
+    radial-gradient(700px 500px at 85% 100%, #062a33 0%, transparent 55%),
+    #0b0d14;
+  min-width: 0;
+}
+#cover {
+  max-width: 100%;
+  max-height: calc(100vh - 92px);
+  width: auto;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 0 1px #262b40;
+  cursor: grab;
+  touch-action: none;
+}
+#cover:active { cursor: grabbing; }
+#stageHint { color: #69718c; font-size: 12px; margin: 0; text-align: center; }
+
+.field { display: block; margin-bottom: 12px; color: #c6cbdd; font-size: 12.5px; }
+.field input[type='text'], .field select {
+  width: 100%;
+  margin-top: 5px;
+  background: #10131f;
+  border: 1px solid #333b58;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 10px;
+  font: inherit;
+}
+.field input[type='range'] { width: 100%; margin-top: 6px; accent-color: #22d3ee; }
+#zoomVal { color: #22d3ee; float: right; }
+
+.row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.fieldLabel { color: #c6cbdd; font-size: 12.5px; }
+.seg { display: flex; gap: 0; }
+.seg button { border-radius: 0; }
+.seg button:first-child { border-radius: 8px 0 0 8px; }
+.seg button:last-child { border-radius: 0 8px 8px 0; }
+
+.check { display: flex; gap: 8px; align-items: flex-start; color: #c6cbdd; font-size: 12.5px; cursor: pointer; }
+.check input { margin-top: 2px; accent-color: #d9a441; }
+
+.exportGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.exportGrid button {
+  background: linear-gradient(135deg, #ff4f9a, #ff7a59);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 6px;
+}
+.exportGrid button:hover { filter: brightness(1.1); }
+#status { color: #7ee2a8; font-size: 12.5px; min-height: 18px; }
+
+#fullCover { display: none; }
+body.shot-cover #app { display: none; }
+body.shot-cover #fullCover { display: block; width: 100vw; height: 100vh; }
